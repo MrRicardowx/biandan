@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery.js"></script>
+</head>
+<body>
+    <!--<form action="index2.php" method="get">-->
+            <!--账号<input type="text" name="user">-->
+            <!--密码<input type="text" name="pass">-->
+            <!--<input type="submit">-->
+    <!--</form>-->
+    <form action="index2.php" method="post">
+        账号<input type="text" name="user">
+        密码<input type="text" name="pass">
+        <input type="submit">
+    </form>
+</body>
+</html>
+<script>
+//    let sub=document.querySelector('input[type=submit]')
+//    sub.onclick=function (e) {
+//        e.preventDefault()
+//        var ajax=new XMLHttpRequest()
+//        let str='';
+//        let input=document.querySelectorAll('input[type=text]')
+//        input.forEach(val=>{
+//            str+=`${val.name}=${val.value}&`
+//        })
+//        str=str.slice(0,-1)
+//        ajax.open('get','index2.php?'+str,true);
+//        ajax.send();
+//        ajax.onreadystatechange=function () {
+//            if(ajax.readyState===4){
+//                if(ajax.status===200){
+////                    console.log(ajax.response,ajax.responseText)
+//                    console.log(ajax.response)
+//                }
+//            }
+//        }
+//    }
+
+//    let sub=document.querySelector('input[type=submit]')
+//        sub.onclick=function (e) {
+//            e.preventDefault()
+//            var ajax=new XMLHttpRequest();
+//            let str='';
+//            let input=document.querySelector('input[type=text]')
+//            input.forEach(val=>{
+//                str+val.name=val.value+&
+//            })
+//            user=
+//                ajax.open('get ','index.php?user=admin&pass=123',true);//默认是异步,后面还有俩个参数一般不填写,问好后面的是数据键值对
+//            ajax.send();
+//            ajax.onreadystatechange=function () {//当准备状态触发的时候就会触发函数
+//                console.log(1)//三次
+//                if(ajax.readyState==4){//4的时候交互成功 1未开始 2开始 3正在进行
+//                    if(ajax.status==200){ //200一切正常，404    5XX服务器错误
+//                        console.log(ajax.response)
+//                        console.log(ajax.responseText)
+//                    }
+
+//                }
+//            }
+//    }
+
+</script>
+<script>
+//    post 不通过地址传递 数据量比较大 安全性相对较高
+//    ajax.setRequestHeader('content-type','application/x-www-form-urlencoded')  设置请求头信息
+//    ajax.send(str)//post方式
+//    new ActiveXObject('Microsoft.XMLHTTP')
+//    var ajax=?window. XMLHtpReauest():new ActiveXObject('Microsoft.XMLHTTP')
+
+</script>
+<script>
+//    $(':submit').click(function (e) {
+//    e.preventDefault()
+//    $.ajax({
+//        url:'index2.php',
+//        type:'post',
+//        data:$('form').serialize(),
+//        asynch:'true',
+//        dataType:'text',
+//        success:function (mes) {
+//            console.log(mes)
+//        }
+//    })
+//})
+</script>
+<script>
+    console.log($('form').attr('action')+'?')
+    function ajax(btn,tp){
+        this.btn=btn;
+        this.type=tp;
+    }
+    ajax.prototype={
+        click(){
+            this.btn.onclick=(e)=>{
+//                console.log(str)
+                e.preventDefault()
+                var ajax=new XMLHttpRequest()
+                let str=this.date()
+                ajax.open(this.tpe(),this.url(),true)
+//                ajax.open('post','index2.php?',true);
+                ajax.setRequestHeader('content-type','application/x-www-form-urlencoded')
+                ajax.send(str)
+                ajax.onreadystatechange=function () {
+                    if(ajax.readyState===4){
+                        if(ajax.status===200){
+                            console.log(ajax.response)
+                        }
+                    }
+                }
+            }
+            },
+        url(){
+            let url=$('form').attr('action')+'?'
+            return url
+        },
+        tpe(){
+            if(this.type=='post'){
+                type='post'
+            }
+            if(this.type=='get'){
+                type='get'
+            }
+            return type;
+        },
+        date(){
+            let str='';
+            let input=document.querySelectorAll('input[type=text]')
+            input.forEach(val=>{
+                str+=`${val.name}=${val.value}&`
+            })
+            str=str.slice(0,-1)
+            return str;
+        }
+    }
+    let sub=document.querySelector('input[type=submit]')
+    let post=new ajax(sub,'post')
+        post.click()
+//    let get=new ajax()
+//    post.post()
+//    get.get()
+</script>
+<script>
+    //post
+//    let sub=document.querySelector('input[type=submit]')
+//    sub.onclick=function (e) {
+//        e.preventDefault()
+//        var ajax=new XMLHttpRequest()
+//        let str='';
+//        let input=document.querySelectorAll('input[type=text]')
+//        input.forEach(val=>{
+//            str+=`${val.name}=${val.value}&`
+//        })
+//        str=str.slice(0,-1)
+//        ajax.open('post','index2.php?',true);
+//        ajax.setRequestHeader('content-type','application/x-www-form-urlencoded')
+//        ajax.send(str);
+//        ajax.onreadystatechange=function () {
+//            if(ajax.readyState===4){
+//                if(ajax.status===200){
+//                    console.log(ajax.response)
+//                }
+//            }
+//        }
+//    }
+</script>
